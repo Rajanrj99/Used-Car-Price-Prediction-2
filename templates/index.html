@@ -9,24 +9,19 @@
         body {
             font-family: 'Roboto', sans-serif;
             color: #333;
-            background-image: url("img.jpg");
-            background-color: #f5f5f5; /* Adjusted to match form page background */
+            background-image:url(https://cdn.pixabay.com/photo/2014/04/05/11/40/diamond-316610_1280.jpg);
+            
+            
             margin: 0;
             padding: 0;
         }
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            padding: 20px;
-            background-color: rgba(0, 0, 0, 0.7);
-            color: #ffffff;
-        }
+        
         .hero-section {
             text-align: center;
             padding: 100px 20px;
-            background: rgba(0, 0, 0, 0.5); /* Dark overlay for better contrast */
+            background: rgba(0, 0, 0, 0.3); /* Dark overlay for better contrast */
             margin: 20px; /* Match form container margin */
-            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); /* Added shadow for consistency */
+            
         }
         .hero-section h1, .hero-section p {
             color: #fff;
@@ -51,10 +46,7 @@
             padding: 20px 10px;
             margin-top: 20px;
         }
-        .navbar a, .navbar div, footer a {
-            color: #fff;
-            text-decoration: none;
-        }
+        
         footer a {
             color: #4da3ff; /* Ensures visibility against footer background */
         }
@@ -62,20 +54,12 @@
 </head>
 <body>
 
-<div class="navbar">
-    <div>LearningPath End To End Data Science ML Project</div>
-    <nav>| 
-        <a href="/predict" class="btn-predict" style="margin-left: 20px;">Predict Now</a> <!-- Adjusted for direct access -->
-    </nav>
-</div>
-
 <div class="hero-section">
     <h1>Discover the True Value of Diamonds with AI</h1>
     <p>Use our machine learning model to predict diamond prices accurately.</p>
     <!-- Removed extra buttons leaving only the primary action -->
     <a href="/predict" class="btn-predict">Predict Diamond Prices</a>
 </div>
-
 
 
 </body>

@@ -3,91 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vehicle Registration Form</title>
+    <title>Used Cars Price</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
+            padding: 40px;
+            background-color: #f4f7f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        form {
+            background: #ffffff;
             padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
         }
         .form-field {
-            margin-bottom: 10px;
+            margin-bottom: 20px;
         }
         label {
-            margin-right: 10px;
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
         }
-        input, select {
-            padding: 8px;
-            width: 200px;
+        input, datalist {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+        input:focus {
+            border-color: #0056b3;
+            outline: none;
         }
         button {
-            padding: 10px 20px;
+            width: 100%;
+            padding: 10px;
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            border-radius: 4px;
             cursor: pointer;
+            font-weight: 500;
+            text-transform: uppercase;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #003d82;
         }
     </style>
 </head>
 <body>
-    <h1>Vehicle Registration Form</h1>
-    <form id="registrationForm">
-        <div class="form-field">
-            <label for="yearOfRegistration">Year of Registration:</label>
-            <input type="number" id="yearOfRegistration" name="yearOfRegistration" required>
-        </div>
-        <div class="form-field">
-            <label for="kilometer">Kilometer:</label>
-            <input type="number" id="kilometer" name="kilometer" required>
-        </div>
+    <form action="{{url_for('predict_datapoint')}}" method="POST">
+        <h1 style="text-align:center; margin-bottom: 20px;">Used Cars Price</h1>
+        
         <div class="form-field">
             <label for="vehicleType">Vehicle Type:</label>
-            <input list="vehicleTypes" id="vehicleType" name="vehicleType" required>
+            <input list="vehicleTypes" id="vehicleType" name="vehicleType" required placeholder="Enter type of Vehicle">
             <datalist id="vehicleTypes">
-                <option value="kleinwagen">
-                <option value="kombi">
-                <option value="cabrio">
-                <option value="limousine">
-                <option value="bus">
-                <option value="suv">
-                <option value="coupe">
-                <option value="other">
-            </datalist>
-        </div>
-        <div class="form-field">
-            <label for="gearbox">Gearbox:</label>
-            <input list="gearboxes" id="gearbox" name="gearbox" required>
-            <datalist id="gearboxes">
-                <option value="manual">
-                <option value="automatic">
-            </datalist>
-        </div>
-        <div class="form-field">
-            <label for="model">Model:</label>
-            <input list="models" id="model" name="model" required>
-            <datalist id="models"></datalist>
-        </div>
-        <div class="form-field">
-            <label for="fuelType">Fuel Type:</label>
-            <input list="fuelTypes" id="fuelType" name="fuelType" required>
-            <datalist id="fuelTypes">
-                <option value="benzene">
-                <option value="diesel">
-                <option value="lpg">
-                <option value="hybrid">
-                <option value="cng">
-                <option value="electric">
-                <option value="other">
+                
             </datalist>
         </div>
         <div class="form-field">
             <label for="brand">Brand:</label>
-            <input list="brands" id="brand" name="brand" required>
+            <input list="brands" id="brand" name="brand" required placeholder="Enter Brand Name">
             <datalist id="brands"></datalist>
         </div>
+        <div class="form-field">
+            <label for="model">Model:</label>
+            <input list="models" id="model" name="model" required placeholder="Enter Model Name">
+            <datalist id="models"></datalist>
+        </div>
+        <div class="form-field">
+            <label for="gearbox">Gearbox:</label>
+            <input list="gearboxes" id="gearbox" name="gearbox" required placeholder="Enter type of Gearbox">
+            <datalist id="gearboxes"></datalist>
+        </div>
+        
+        <div class="form-field">
+            <label for="fuelType">Fuel Type:</label>
+            <input list="fuelTypes" id="fuelType" name="fuelType" required placeholder="Enter fuelType">
+            <datalist id="fuelTypes"></datalist>
+        </div>
+        <div class="form-field">
+            <label for="yearOfRegistration">Year of Registration:</label>
+            <input type="number" id="yearOfRegistration" name="yearOfRegistration" required min="1900" max="2024" placeholder="Enter year of Registration">
+        </div>
+        <div class="form-field">
+            <label for="kilometer">Kilometer:</label>
+            <input type="number" id="kilometer" name="kilometer" required placeholder="Enter total no km " step="any">
+        </div>
+        
         <button type="submit">Submit</button>
+        {% if message %}
+        <script>alert('{{ message }}');</script>
+        {% endif %}
     </form>
-
+    
     <script>
-        // Simulated data fetching using local JSON-like data
-        const modelsData = ["golf", "3er", "a4", "c_klasse", "yaris", "seicento"]; // Add more models
-        const brandsData = ["volkswagen", "audi", "mercedes_benz", "toyota", "fiat", "ford"]; // Add more brands
+        const modelsData = ["golf", "3er", "a4", "c_klasse", "yaris", "seicento"];
+        const brandsData = ["volkswagen", "audi", "mercedes_benz", "toyota", "fiat", "ford"];
+        const vehicleTypesData = ["kleinwagen", "kombi", "cabrio", "limousine", "bus", "suv", "coupe", "other"];
+        const gearboxesData = ["manual", "automatic"];
+        const fuelTypesData = ["benzene", "diesel", "lpg", "hybrid", "cng", "electric", "other"];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            populateDataList(modelsData, 'models');
+            populateDataList(brandsData, 'brands');
+            populateDataList(vehicleTypesData, 'vehicleTypes');
+            populateDataList(gearboxesData, 'gearboxes');
+            populateDataList(fuelTypesData, 'fuelTypes');
+        });
 
         function populateDataList(data, listId) {
             const list = document.getElementById(listId);
@@ -97,31 +132,7 @@
                 list.appendChild(option);
             });
         }
-
-        // Populate models and brands on document ready
-        document.addEventListener('DOMContentLoaded', () => {
-            populateDataList(modelsData, 'models');
-            populateDataList(brandsData, 'brands');
-        });
-
-        // Handle form submission
-        document.getElementById('registrationForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const formData = new FormData(this);
-            fetch('/predict', { // Change '/submit-form' to your actual endpoint
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Success:', data);
-                alert('Form submitted successfully!');
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-                alert('Error submitting form');
-            });
-        });
+        }
     </script>
 </body>
 </html>

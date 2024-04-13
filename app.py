@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template, jsonify
 # Alternatively can use Django, FastAPI, or anything similar
 from src.pipeline.prediction_pipeline import CustomData, PredictPipeline
+from src.category import data
 
 application = Flask(__name__)
 app = application
@@ -11,20 +12,24 @@ def home_page():
 @app.route('/predict', methods = ['POST', "GET"])
 
 def predict_datapoint(): 
+    
     if request.method == "GET": 
         return render_template("form.html")
     else: 
-        data = CustomData(
-            yearOfRegistration = float(request.form.get('yearOfRegistration')),
-            kilometer = float(request.form.get('kilometer')),
-            vehicleType = request.form.get("vehicleType"), 
-            gearbox= request.form.get("gearbox"), 
-            model = request.form.get("model"),
-            fuelType= request.form.get("fuelType"), 
-            brand = request.form.get("brand"), 
+        
+        from src.category import data
+        
+        if request.form.get("vehicleType") not in data["vehicleType_category"]:
+            return render_template("form.html",message="vehicle type is not valid")
             
-        )
-    new_data = data.get_data_as_dataframe()
+        datanew = CustomData( yearOfRegistration = float(request.form.get('yearOfRegistration')),
+        kilometer = float(request.form.get('kilometer')),
+        vehicleType = request.form.get("vehicleType"),
+        gearbox= request.form.get("gearbox"), 
+        model = request.form.get("model"),
+        fuelType= request.form.get("fuelType"), 
+        brand =request.form.get("brand"))
+    new_data = datanew.get_data_as_dataframe()
     predict_pipeline = PredictPipeline()
     pred = predict_pipeline.predict(new_data)
 

@@ -17,10 +17,10 @@ def predict_datapoint():
         data = CustomData(
             yearOfRegistration = float(request.form.get('yearOfRegistration')),
             kilometer = float(request.form.get('kilometer')),
-            vehicleType = float(request.form.get("vehicleType")), 
-            gearbox= float(request.form.get("gearbox")), 
-            model = float(request.form.get("model")),
-            fuelType= float(request.form.get("fuelType")), 
+            vehicleType = request.form.get("vehicleType"), 
+            gearbox= request.form.get("gearbox"), 
+            model = request.form.get("model"),
+            fuelType= request.form.get("fuelType"), 
             brand = request.form.get("brand"), 
             
         )

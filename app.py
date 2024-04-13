@@ -15,15 +15,14 @@ def predict_datapoint():
         return render_template("form.html")
     else: 
         data = CustomData(
-            carat = float(request.form.get('carat')),
-            depth = float(request.form.get('depth')),
-            table = float(request.form.get("table")), 
-            x= float(request.form.get("x")), 
-            y = float(request.form.get("y")),
-            z = float(request.form.get("z")), 
-            cut = request.form.get("cut"), 
-            color = request.form.get("color"), 
-            clarity = request.form.get("clarity")
+            yearOfRegistration = float(request.form.get('yearOfRegistration')),
+            kilometer = float(request.form.get('kilometer')),
+            vehicleType = float(request.form.get("vehicleType")), 
+            gearbox= float(request.form.get("gearbox")), 
+            model = float(request.form.get("model")),
+            fuelType= float(request.form.get("fuelType")), 
+            brand = request.form.get("brand"), 
+            
         )
     new_data = data.get_data_as_dataframe()
     predict_pipeline = PredictPipeline()

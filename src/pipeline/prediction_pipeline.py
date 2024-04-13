@@ -25,37 +25,32 @@ class PredictPipeline:
             raise CustomException(e,sys)
         
 class CustomData: 
-        def __init__(self, carat:float, 
-                     depth:float, 
-                     table:float, 
-                     x:float, 
-                     y:float, 
-                     z:float, 
-                     cut:str, 
-                     color:str, 
-                     clarity:str): 
-             self.carat = carat
-             self.depth = depth
-             self.table = table
-             self.x = x
-             self.y = y 
-             self.z = z
-             self.cut = cut 
-             self.color = color 
-             self.clarity = clarity
+        def __init__(self, yearOfRegistration:int, 
+                     kilometer:float, 
+                      vehicleType:str,
+                      gearbox:str,
+                     model:str, 
+                     fuelType:str, 
+                     brand:str): 
+             self.yearOfRegistration =yearOfRegistration
+             self.kilometer = kilometer
+             self.vehicleType = vehicleType
+             self.gearbox= gearbox
+             self.model = model
+             self.fueltype = fuelType 
+             self.brand = brand
         
         def get_data_as_dataframe(self): 
              try: 
                   custom_data_input_dict = {
-                       'carat': [self.carat], 
-                       'depth': [self.depth], 
-                       'table': [self.table], 
-                       'x': [self.x],
-                       'y':[self.y],
-                       'z':[self.z], 
-                       'cut': [self.cut], 
-                       'color': [self.color], 
-                       'clarity': [self.clarity]
+                       'yearOfRegistration': [self.yearOfRegistration], 
+                       'kilometer': [self.kilometer], 
+                       'vehicleType': [self.vehicleType], 
+                       'gearbox': [self.gearbox],
+                       'model':[self.model],
+                       'fueltype':[self.fueltype], 
+                       'brand': [self.brand], 
+                       
 
                   }
                   df = pd.DataFrame(custom_data_input_dict)

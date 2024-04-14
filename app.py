@@ -21,7 +21,16 @@ def predict_datapoint():
         
         if request.form.get("vehicleType") not in data["vehicleType_category"]:
             return render_template("form.html",message="vehicle type is not valid")
-            
+        if request.form.get("gearbox") not in data["gearbox_category"]:
+            return render_template("form.html",message="gearbox type is not valid")
+        if request.form.get("model") not in data["model_category"]:
+            return render_template("form.html",message="model type is not valid")
+        if request.form.get("fuelType") not in data["fuelType_category"]:
+            return render_template("form.html",message="fuelType type is not valid")
+        if request.form.get("brand") not in data["brand_category"]:
+            return render_template("form.html",message="brand type is not valid")
+        
+        
         datanew = CustomData( yearOfRegistration = float(request.form.get('yearOfRegistration')),
         kilometer = float(request.form.get('kilometer')),
         vehicleType = request.form.get("vehicleType"),

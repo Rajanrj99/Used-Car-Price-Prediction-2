@@ -29,9 +29,7 @@ class ModelTrainer():
             models = {
                 "LinearRegression": LinearRegression(),
                 "Ridge": Ridge(), 
-                "Lasso":Lasso(), 
-                "ElasticNet": ElasticNet(), 
-                "DecisionTree": DecisionTreeRegressor()
+                "Lasso":Lasso(),
             }
             model_report: dict = model_performance(X_train, y_train, X_test, y_test, models)
 

@@ -7,7 +7,7 @@ from src.category import data
 from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
 from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import OrdinalEncoder,StandardScaler
+from sklearn.preprocessing import StandardScaler,OrdinalEncoder
 
 from src.exception import CustomException
 from src.logger import logging
@@ -25,16 +25,10 @@ class DataTransformation:
     def get_data_transformation_object(self):
         try:
             logging.info('Data Transformation initiated')
-            # Define which columns should be ordinal-encoded and which should be scaled
-            # categorical_cols = ['cut', 'color','clarity']
-            # numerical_cols = ['carat', 'depth','table', 'x', 'y', 'z']
+            
             numerical_cols=['yearOfRegistration', 'kilometer']
             categorical_cols=['vehicleType', 'gearbox', 'model', 'fuelType', 'brand']
             
-            # Define the custom ranking for each ordinal variable
-            # cut_categories = ['Fair', 'Good', 'Very Good','Premium','Ideal']
-            # color_categories = ['D', 'E', 'F', 'G', 'H', 'I', 'J']
-            # clarity_categories = ['I1','SI2','SI1','VS2','VS1','VVS2','VVS1','IF']
             
             logging.info('Pipeline Initiated')
 
@@ -55,6 +49,7 @@ class DataTransformation:
                 ('ordinalencoder',OrdinalEncoder(categories=list(data.values()))),
                 ('scaler',StandardScaler())
                 ]
+            
 
             )
 

@@ -1,7 +1,7 @@
 import sys 
 import os 
 from src.exception import CustomException 
-from src.category import data
+
 from src.logger import logging 
 from src.utils import load_obj
 from flask import Flask, request, render_template

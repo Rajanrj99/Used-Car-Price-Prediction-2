@@ -7,17 +7,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <style>
         body {
+            display:flex;
             font-family: 'Roboto', sans-serif;
-            padding: 40px;
+            padding: 0px;
             background-image:url(https://images.unsplash.com/photo-1610411605947-0a96f654d829?q=80&w=1934&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
             background-color: #00000;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
+            height: auto;
+            margin: 10px;
         }
         form {
+            
             background: #00000;
             border: 1px solid ;
             padding: 20px;
@@ -27,12 +29,12 @@
             max-width: 400px;
         }
         .form-field {
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
         label {
             display: block;
             margin-bottom: 8px;
-            color:grey;
+            color:#113f67;
             font-weight:bold;
         }
         input, datalist {
@@ -80,44 +82,65 @@
 </head>
 <body>
     <form action="{{url_for('predict_datapoint')}}" method="POST">
-        <h1 style="text-align:center; margin-bottom: 20px;">Used Cars Price</h1>
         
+        <h1 style="text-align:center; margin-bottom: 20px;">Used Cars Price</h1>
         <div class="form-field">
-            <label for="vehicleType">Vehicle Type:</label>
-            <input list="vehicleTypes" id="vehicleType" name="vehicleType" required placeholder="Enter type of Vehicle">
-            <datalist id="vehicleTypes">
+            <label for="Name">Name:</label>
+            <input list="Names" id="Name" name="Name" required placeholder="Select Name of Cars">
+            <datalist id="Names">
                 
             </datalist>
         </div>
         <div class="form-field">
-            <label for="brand">Brand:</label>
-            <input list="brands" id="brand" name="brand" required placeholder="Enter Brand Name">
-            <datalist id="brands"></datalist>
+            <label for="Location">Location:</label>
+            <input list="Locations" id="Location" name="Location" required placeholder="Select City Name">
+            <datalist id="Locations"></datalist>
         </div>
         <div class="form-field">
-            <label for="model">Model:</label>
-            <input list="models" id="model" name="model" required placeholder="Enter Model Name">
-            <datalist id="models"></datalist>
+            <label for="Owner_Type">Owner_Type:</label>
+            <input list="Owner_Types" id="Owner_Type" name="Owner_Type" required placeholder="Select Owner Type ">
+            <datalist id="Owner_Types"></datalist>
         </div>
         <div class="form-field">
-            <label for="gearbox">Gearbox:</label>
-            <input list="gearboxes" id="gearbox" name="gearbox" required placeholder="Enter type of Gearbox">
-            <datalist id="gearboxes"></datalist>
+            <label for="Transmission">Gearbox:</label>
+            <input list="Transmissions" id="Transmission" name="Transmission" required placeholder="Select type of Gearbox">
+            <datalist id="Transmissions"></datalist>
         </div>
         
         <div class="form-field">
-            <label for="fuelType">Fuel Type:</label>
-            <input list="fuelTypes" id="fuelType" name="fuelType" required placeholder="Enter fuelType">
-            <datalist id="fuelTypes"></datalist>
+            <label for="Fuel_Type">Fuel_Type:</label>
+            <input list="Fuel_Types" id="Fuel_Type" name="Fuel_Type" required placeholder="Select fuelType">
+            <datalist id="Fuel_Types"></datalist>
         </div>
         <div class="form-field">
-            <label for="yearOfRegistration">Year of Registration:</label>
-            <input type="number" id="yearOfRegistration" name="yearOfRegistration" required min="1900" max="2024" placeholder="Enter year of Registration">
+            <label for="Year">Year of Registration:</label>
+            <input type="number" id="Year" name="Year" required min="1900" max="2024" placeholder="Enter year of Registration">
         </div>
         <div class="form-field">
-            <label for="kilometer">Kilometer:</label>
-            <input type="number" id="kilometer" name="kilometer" required placeholder="Enter total no km " step="any">
+            <label for="Kilometers_Driven">Kilometers_Driven:</label>
+            <input type="number" id="Kilometers_Driven" name="Kilometers_Driven" required placeholder="Enter total no km ">
         </div>
+
+        <div class="form-field">
+            <label for="Mileage">Mileage:</label>
+            <input type="number" id="Mileage" name="Mileage" required placeholder="Enter Mileage " step="any">
+        </div>
+        <div class="form-field">
+            <label for="Engine">Engine:</label>
+            <input type="number" id="Engine" name="Engine" required placeholder="Enter Engine CC " >
+        </div>
+        <div class="form-field">
+            <label for="Power">Power:</label>
+            <input type="number" id="Power" name="Power" required placeholder="Enter HoresePower " >
+        </div>
+        <div class="form-field">
+            <label for="Seats">Seats:</label>
+            <input type="number" id="Seats" name="Seats" required placeholder="Enter No of Seats " >
+        </div>
+
+
+
+
         <div class ="buton">
         <button type="submit" class="btn">Submit</button>
         
@@ -132,44 +155,36 @@
     </form>
     
     <script>
-        const modelsData = ['golf', 'grand', 'fabia', '3er', '2_reihe', 'other', 'c_max', '3_reihe', 'passat', 'navara', 'ka', 'polo', 
-        'twingo', 'a_klasse', 'scirocco', '5er', 'meriva', 'arosa', 'c4', 'civic', 'transporter', 'punto', 'e_klasse', 
-        'clio', 'kadett', 'kangoo', 'corsa', 'one', 'fortwo', '1er', 'b_klasse', 'signum', 'astra', 'a8', 'jetta', 
-        'fiesta', 'c_klasse', 'micra', 'vito', 'sprinter', '156', 'escort', 'forester', 'xc_reihe', 'scenic', 'a4', 
-        'a1', 'insignia', 'combo', 'focus', 'tt', 'a6', 'jazz', 'omega', 'slk', '7er', '80', '147', 'glk', '100', 
-        'z_reihe', 'sportage', 'sorento', 'v40', 'ibiza', 'mustang', 'eos', 'touran', 'getz', 'a3', 'almera', 'megane', 
-        'lupo', 'r19', 'zafira', 'caddy', 'mondeo', 'cordoba', 'colt', 'impreza', 'vectra', 'berlingo', 'm_klasse', 
-        'tiguan', 'i_reihe', 'espace', 'sharan', '6_reihe', 'panda', 'up', 'seicento', 'ceed', '5_reihe', 'yeti', 
-        'octavia', 'mii', 'rx_reihe', '6er', 'modus', 'fox', 'matiz', 'beetle', 'c1', 'rio', 'touareg', 'logan', 
-        'spider', 'cuore', 's_max', 'a2', 'x_reihe', 'a5', 'galaxy', 'c3', 'viano', 's_klasse', '1_reihe', 'avensis', 
-        'sl', 'roomster', 'q5', 'kaefer', 'santa', 'cooper', 'leon', '4_reihe', '500', 'laguna', 'ptcruiser', 'clk', 
-        'primera', 'exeo', '159', 'transit', 'juke', 'qashqai', 'carisma', 'accord', 'corolla', 'lanos', 'phaeton', 
-        'boxster', 'verso', 'swift', 'rav', 'kuga', 'picanto', 'kalos', 'superb', 'stilo', 'alhambra', '911', 'mx_reihe', 
-        'm_reihe', 'roadster', 'ypsilon', 'cayenne', 'galant', 'justy', '90', 'sirion', 'crossfire', 'agila', 'duster', 
-        'cr_reihe', 'v50', 'discovery', 'c_reihe', 'v_klasse', 'yaris', 'c5', 'aygo', 'cc', 'carnival', 'fusion', 
-        'bora', 'forfour', 'cl', 'tigra', '300c', 'q3', 'spark', 'v70', 'x_type', 'ducato', 's_type', 'x_trail', 
-        'toledo', 'altea', 'voyager', 'calibra', 'bravo', 'range_rover', 'antara', 'tucson', 'q7', 'citigo', 'jimny', 
-        'cx_reihe', 'wrangler', 'lybra', 'range_rover_sport', 'lancer', 'freelander', 'captiva', 'c2', 'range_rover_evoque', 
-        'sandero', 'note', '900', 'defender', 'cherokee', 'clubman', 'samara', '601', 'legacy', 'pajero', 'auris', 'niva', 
-        's60', 'nubira', 'vivaro', 'g_klasse', 'lodgy', '850', 'serie_2', 'charade', 'croma', 'outlander', 'gl', 'doblo', 
-        'musa', 'amarok', 'move', '9000', 'v60', '145', 'aveo', '200', 'b_max', 'delta', 'terios', 'rangerover', 'materia', 
-        'kalina', 'elefantino', 'i3', 'kappa', 'serie_3', 'serie_1', 'discovery_sport'];
-        const brandsData = ['volkswagen', 'audi', 'jeep', 'skoda', 'bmw', 'peugeot', 'ford', 'mazda', 'nissan', 'renault', 'mercedes_benz', 
-        'opel', 'seat', 'citroen', 'honda', 'fiat', 'mini', 'smart', 'hyundai', 'sonstige_autos', 'alfa_romeo', 'subaru', 
-        'volvo', 'mitsubishi', 'kia', 'suzuki', 'lancia', 'porsche', 'toyota', 'chevrolet', 'dacia', 'daihatsu', 'trabant', 
-        'saab', 'chrysler', 'jaguar', 'daewoo', 'rover', 'land_rover', 'lada'];
-        const vehicleTypesData = ["kleinwagen", "kombi", "cabrio", "limousine", "bus", "suv", "coupe", "other"];
-        const gearboxesData = ["manual", "automatic"];
-        const fuelTypesData = ["benzene", "diesel", "lpg", "hybrid", "cng", "electric", "other"];
-
+        const brandname = [
+            'Tata Indigo CS eGVX', 'Ford Figo 2015-2019 1.5D Trend MT', 'Maruti Zen LXi BSII', 'Maruti Zen VXI', 
+            'Ford Fiesta Titanium 1.5 TDCi', 'Land Rover Discovery SE 3.0 TD6', 'Tata Manza Aura Safire BS IV', 
+            'Hyundai Santro Xing GLS CNG', 'Honda BR-V i-VTEC VX MT', 'Maruti Celerio ZXI Optional', 'Datsun GO T Option', 
+            'Ford Figo Petrol LXI', 'Honda City ZX EXi', 'Hyundai Accent Executive LPG', 'Toyota Land Cruiser Prado VX L', 
+            'Honda City 1.5 EXI S', 'Skoda Rapid 1.6 MPI Ambition Plus', 'Volkswagen Ameo 1.5 TDI Comfortline AT', 
+            'Mitsubishi Pajero 2.8 SFX 7Str', 'Hyundai Verna Transform CRDi VGT SX ABS', 'Maruti Wagon R LXI LPG BSIV', 
+            'Hyundai Grand i10 CRDi Era', 'Volkswagen Vento 1.6 Trendline', 'BMW 5 Series 530i Sedan', 
+            'Hyundai i20 2015-2017 Magna 1.2', 'Maruti Ciaz 1.4 Alpha', 'Volkswagen Passat 2.0 PD DSG', 
+            'Skoda Yeti Elegance 4X2', 'BMW 5 Series 2003-2012 GT 530d LE', 'Tata Indica V2 DiCOR DLG BS-III', 
+            'Volvo S60 D5 Kinetic', 'Renault Duster 110PS Diesel RxZ AWD', 'Mitsubishi Pajero 2.8 GLX Sports', 
+            'Mercedes-Benz New C-Class C 200 Kompressor Elegance MT', 'Mahindra Scorpio 2009-2014 VLX 4WD AT 7S BSIV', 
+            'Hyundai Verna 1.6 i ABS', 'Mahindra XUV500 AT W10 AWD', 'Skoda Octavia Ambition 1.8 TSI AT', 
+            'Maruti Swift RS VDI', 'Maruti Swift VVT ZXI', 'Tata Sumo EX 10/7 Str BSII', 'Skoda Fabia 1.6 MPI Elegance', 
+            'Ford EcoSport 1.5 Ti VCT MT Signature', 'Ford Fiesta Diesel Titanium Plus', 'Maruti Ignis 1.2 AMT Alpha', 
+            'Honda CR-V Petrol 2WD','Hyundai Creta 1.6 VTVT S', 'Maruti Wagon R LXI Minor', 'Honda City i DTEC VX', 'Hyundai i20 1.2 Spotz', 'Hyundai i20 Sportz 1.4 CRDi', 'Porsche Panamera Diesel', 'Honda City i VTEC CVT VX', 'Hyundai Verna 1.4 VTVT', 'Maruti Vitara Brezza ZDi', 'Renault Pulse RxL', 'Maruti Wagon R LXI', 'Honda Amaze VX i-DTEC', 'Skoda Octavia Classic 1.9 TDI MT', 'Audi Q7 3.0 TDI Quattro Technology', 'Maruti Alto LXi', 'Audi Q7 4.2 TDI Quattro Technology', 'Toyota Fortuner 4x4 MT', 'Fiat Linea Classic 1.3 Multijet', 'Maruti Swift Vdi BSIII', 'Tata Indigo CS Emax CNG GLX', 'Honda BR-V i-DTEC S MT', 'Hyundai Grand i10 1.2 Kappa Magna', 'Hyundai Accent GLE 1', 'Toyota Innova 2.5 G (Diesel) 7 Seater BS IV', 'Ford Ikon 1.4 ZXi', 'Ford Figo Diesel EXI', 'Maruti Celerio VXI AT', 'Volkswagen Polo 1.2 MPI Comfortline', 'Volvo XC90 2007-2015 D5 AT AWD', 'Toyota Innova 2.5 ZX Diesel 7 Seater', 'Toyota Etios Liva GD', 'Hyundai Creta 1.6 SX', 'Mercedes-Benz GLC 220d 4MATIC Style', 'Renault Duster 85PS Diesel RxL Optional', 'Hyundai Getz GLS', 'Toyota Innova Crysta 2.4 GX MT', 'Maruti Omni MPI STD BSIV', 'Honda City i VTEC S', 'Renault KWID RXL', 'Hyundai Verna Xi (Petrol)', 'Volkswagen Polo GT TSI', 'Tata Indigo LX BSII', 'Mahindra XUV500 W10 AWD', 'Hyundai i20 Asta Option 1.2', 'Nissan Micra Diesel XV', 'Volkswagen Vento 1.5 TDI Highline', 'Honda City 1.5 V MT', 'Honda Accord 2.4 AT', 'BMW 6 Series 650i Coupe', 'Mercedes-Benz New C-Class C250 Avantgarde', 'Toyota Fortuner 4x2 4 Speed AT', 'Hyundai Xcent 1.1 CRDi Base', 'Toyota Corolla Altis G', 'Nissan Micra Active XV S', 'Mahindra Scorpio 2.6 SLX CRDe', 'Ford Figo Diesel LXI', 'Audi A4 2.0 TDI', 'Renault Duster 85PS Diesel RxL', 'Nissan Micra Active XV', 'Skoda Rapid 1.6 MPI AT Elegance Plus', 'Audi A6 35 TDI Matrix', 'Volkswagen Polo Petrol Trendline 1.2L', 'Hyundai i20 Sportz Option 1.2', 'Honda Mobilio E i VTEC', 'Honda City i-DTEC SV', 'Maruti Ritz ZDi', 'Tata Indica V2 DL BSIII', 'Maruti Swift Dzire VXi', 'Honda City 1.5 S MT', 'Maruti Alto LXi BSII', 'Hyundai Xcent 1.2 Kappa S Option', 'Nissan Teana 230jM', 'Hyundai Xcent 1.2 CRDi S', 'Hyundai Santro Xing GLS', 'BMW X1 sDrive 20d Exclusive', 'Mini Cooper 5 DOOR D', 'Mercedes-Benz E-Class 2015-2017 E250 Edition E', 'Hyundai i20 1.2 Magna', 'Nissan Terrano XL 110 PS', 'Hyundai i20 1.2 Sportz', 'BMW 5 Series 530i Sport Line', 'Tata Indica V2 DLS BSIII', 'Maruti Celerio X VXI Option', 'Hyundai Elite i20 Petrol Asta', 'Hyundai Grand i10 Asta', 'Hyundai Verna CRDi 1.6 SX', 'Maruti Ritz LDi', 'Hyundai Elantra SX AT', 'Mahindra Thar CRDe AC', 'Skoda Superb Elegance 2.0 TDI CR AT', 'Hyundai i20 Diesel Asta Option', 'Maruti Esteem Vxi', 'Mahindra Scorpio S4 7 Seater', 'BMW X5 xDrive 30d', 'Chevrolet Sail Hatchback LS ABS', 'Maruti Alto K10 LXI', 'Maruti Wagon R VXI', 'Fiat Linea Emotion (Diesel)', 'Volkswagen Jetta 2007-2011 1.6 Trendline', 'Honda City V MT', 'Mercedes-Benz GL-Class 2007 2012 350 CDI Luxury', 'Hyundai i20 Sportz Option', 'Maruti Swift LDI', 'Mercedes-Benz New C-Class C 220 CDI Avantgarde', 'Mercedes-Benz New C-Class Progressive C 200', 'Hyundai i10 Sportz 1.2', 'Maruti Swift VDI', 'Toyota Fortuner 4x2 Manual', 'Renault Duster 110PS Diesel RxZ', 'Hyundai i10 Sportz', 'Hyundai EON D Lite', 'Audi Q5 30 TDI quattro Premium Plus', 'BMW 3 Series 320d', 'Honda Brio 1.2 VX MT',
+        ];
+        const Location = ['Coimbatore', 'Kochi', 'Bangalore', 'Jaipur', 'Hyderabad', 'Kolkata', 'Ahmedabad', 'Chennai', 'Pune', 'Delhi', 'Mumbai'];
+        const owner = ['First', 'Second', 'Third', 'Fourth & Above'];
+        const gearboxesData = ['Automatic', 'Manual'];
+        const fuelTypesData = ['Diesel', 'Petrol', 'CNG', 'LPG'];
+        
         document.addEventListener('DOMContentLoaded', () => {
-            populateDataList(modelsData, 'models');
-            populateDataList(brandsData, 'brands');
-            populateDataList(vehicleTypesData, 'vehicleTypes');
-            populateDataList(gearboxesData, 'gearboxes');
-            populateDataList(fuelTypesData, 'fuelTypes');
+            populateDataList(brandname, 'Names');
+            populateDataList(Location, 'Locations');
+            populateDataList(owner, 'Owner_Types');
+            populateDataList(gearboxesData, 'Transmissions');
+            populateDataList(fuelTypesData, 'Fuel_Types');
         });
-
+    
         function populateDataList(data, listId) {
             const list = document.getElementById(listId);
             data.forEach(item => {
@@ -179,5 +194,6 @@
             });
         }
     </script>
+    
 </body>
 </html>

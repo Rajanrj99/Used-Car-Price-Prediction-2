@@ -26,8 +26,9 @@ class DataTransformation:
         try:
             logging.info('Data Transformation initiated')
             
-            numerical_cols=['yearOfRegistration', 'kilometer']
-            categorical_cols=['vehicleType', 'gearbox', 'model', 'fuelType', 'brand']
+            #Segregation of categorical features and numerical features
+            numerical_cols=['Year', 'Kilometers_Driven', 'Mileage', 'Engine', 'Power', 'Seats']
+            categorical_cols=['Name', 'Location', 'Fuel_Type', 'Transmission', 'Owner_Type']
             
             
             logging.info('Pipeline Initiated')
@@ -81,7 +82,7 @@ class DataTransformation:
             preprocessing_obj = self.get_data_transformation_object()
 
             target_column_name = 'price'
-            drop_columns = [target_column_name,'Unnamed: 0']#chnage
+            drop_columns = [target_column_name]#chnage
 
             input_feature_train_df = train_df.drop(columns=drop_columns,axis=1)
             target_feature_train_df=train_df[target_column_name]

@@ -27,34 +27,53 @@ class PredictPipeline:
             raise CustomException(e,sys)
         
 class CustomData: 
-        def __init__(self, yearOfRegistration:int, 
-                     kilometer:float, 
-                      vehicleType:str,
-                      gearbox:str,
-                     model:str, 
-                     fuelType:str, 
-                     brand:str): 
-            self.yearOfRegistration =yearOfRegistration
-            self.kilometer = kilometer
-            self.vehicleType = vehicleType
-            self.gearbox= gearbox
-            self.model = model
-            self.fuelType = fuelType 
-            self.brand = brand
+        def __init__(self, Name:str, 
+                     Location:str, 
+                        Year:float,
+                      Kilometers_Driven:float,
+                     Fuel_Type:str, 
+                     Transmission:str, 
+                     Owner_Type:str,
+                     Mileage:float,
+                     Engine:float,
+                     Power:float,
+                     Seats:float,
+                     ): 
+                self.Name =Name
+                self.Location = Location
+                self.Year = Year
+                self.Kilometers_Driven=Kilometers_Driven
+                self.Fuel_Type =Fuel_Type
+                self.Transmission = Transmission
+                self.Owner_Type = Owner_Type
+                self.Mileage =Mileage
+                self.Engine = Engine
+                self.Power = Power
+                self.Seats=Seats
+                
+            
+            
         
             
-
+    
         
         def get_data_as_dataframe(self): 
             try: 
                 custom_data_input_dict = {
-                    'yearOfRegistration': [self.yearOfRegistration], 
-                    'kilometer': [self.kilometer], 
-                    'vehicleType': [self.vehicleType], 
-                    'gearbox': [self.gearbox],
-                    'model':[self.model],
-                    'fuelType':[self.fuelType], 
-                    'brand': [self.brand], 
+                    'Name': [self.Name], 
+                    'Location': [self.Location], 
+                    'Year': [self.Year], 
+                    'Kilometers_Driven': [self.Kilometers_Driven],
+                    'Fuel_Type':[self.Fuel_Type],
+                    'Transmission':[self.Transmission], 
+                    'Owner_Type': [self.Owner_Type], 
+                    'Mileage': [self.Mileage], 
+                    'Engine': [self.Engine], 
+                    'Power': [self.Power],
+                     'Seats': [self.Seats],
+                    
+                    
+                    
                         
 
                 }

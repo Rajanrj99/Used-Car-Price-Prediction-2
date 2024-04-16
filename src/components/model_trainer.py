@@ -45,7 +45,7 @@ class ModelTrainer():
             best_model = models[best_model_name]
 
             print(f"The best model is {best_model_name}, with R2 Score: {best_model_score}")
-            print("\n"*100)
+            print("\n"*10)
             logging.info(f"The best model is {best_model_name}, with R2 Score: {best_model_score}")
             save_function(file_path= self.model_trainer_config.trained_model_file_path, obj = best_model)
 

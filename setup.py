@@ -16,9 +16,9 @@ def get_requirements(file_path:str)-> List[str]:
 setup(
     name = "DemoPipline", 
     version = "0.0.1", 
-    author = "Dr. Abhishek V Hukkerikar", 
-    description= "A trial End to End ML project created for First batch of LP students",
-    author_email= "abhishekh@learningpath.ai", 
+    author = "Rajan Raj", 
+    description= "Ml project for used_car_price_prediction",
+    author_email= "rajr0201147@gmail.com", 
     install_requires = get_requirements("requirements.txt"),
     packages= find_packages()
     )

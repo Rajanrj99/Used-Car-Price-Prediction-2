@@ -64,4 +64,4 @@ def data_base():
     df.to_csv(filepath, index=False)
     print(f"CSV file saved to {filepath}")
     print("succesfully created db")
-    return(df)
+    

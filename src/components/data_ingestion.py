@@ -3,6 +3,7 @@ import sys
 from src.logger import logging
 from src.exception import CustomException
 import pandas as pd
+from src.utils import data_base
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
 
@@ -22,8 +23,11 @@ class DataIngestion:
 
     def initiate_data_ingestion(self):
         logging.info('Data Ingestion methods Starts')
+        data_base()
         try:
             #reading data from dataset
+            # calling data from server
+            
             df=pd.read_csv(os.path.join('notebooks/data','usedcar1.csv'))
             logging.info('Dataset read as pandas Dataframe')
 

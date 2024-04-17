@@ -44,7 +44,7 @@ def data_base():
     from urllib.parse import quote_plus
 
     username = "root"
-    password = "Rajanraj123@"
+    password = ""
     host = "127.0.0.1"
     database_name = "cars"
 

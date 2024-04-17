@@ -23,11 +23,11 @@ class DataIngestion:
 
     def initiate_data_ingestion(self):
         logging.info('Data Ingestion methods Starts')
-        try:
-            data_base()
-            print("database created")
-        except Exception as e:
-            print(e)
+        # try:
+        #     data_base()
+        #     print("database created")
+        # except Exception as e:
+        #     print(e)
         try:
             #reading data from dataset
             # calling data from server
